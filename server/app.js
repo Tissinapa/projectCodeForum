@@ -26,6 +26,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api', usersRouter);
+
+
+
+if (process.env.NODE_ENV ==="development"){
+    var corsOtions = {
+        origin: "http://localhost:3000",
+        optionsSuccessStatus: 200,
+    } 
+    app.use(cors(corsOtions))
+}
 
 module.exports = app;

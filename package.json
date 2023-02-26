@@ -8,8 +8,12 @@
     "install": "cd client && npm install",
     "dev:client": "cd client && npm start",
     "preinstall": "cd server && npm install",
-    "dev:server": "cd server && npm run dev"
+    "dev:server": "cd server && npm run dev",
+    "dev-concur": "concurrently \"npm run dev:server\" \"npm run dev:client\""
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
 }
