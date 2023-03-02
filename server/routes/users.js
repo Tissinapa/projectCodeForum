@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 const {body, validationResult} = require("express-validator")
 const jwt = require("jsonwebtoken")
 const User = require("../models/Users")
-
+const Content = require("../models/Contents")
 const passport  = require("passport-jwt")
 const validateToken = require("../auth/validation.js")
     
@@ -44,7 +44,7 @@ router.post('/user/login', body("email").trim(),body("password").trim(),
             tokenPayload,
             process.env.SECRET,
             {
-              expiresIn: 120  
+              expiresIn: 12000  
             },
             (err, token)=>{
               if(err) throw err;
@@ -101,32 +101,26 @@ router.post("/user/register",body("email").isEmail(),body("password")
 });
 
 //DOES NOT WORK YET!
-router.post('/todos', validateToken,body("items"),body("email"),(req, res, next) => {
-  const userEmail = req.body.email
+router.post('/content', validateToken,(req, res, next) => {
+  const filter = {topic: req.body.topic}
+  const update = {comment: req.body.comment}
 
-  Todo.findOne({user: User._id},(err, user) => {
-    if(err) {
-      throw err;
-    };  
-    if(user){
-      console.log(user._id)
-      Todo.insertMany(
-        {
-          items: req.body.items}, 
-        (err , ok)=>{
-        if(err) throw err;
-        
-        
-        return res.send("ok")
-      })
-     
+  Content.findOneAndUpdate(filter,{$push: update},{new: true},(err,content) => {
+    if(err){
+      throw err
+    }if(content){
+      
+      res.send("ok")
     }else {
-      console.log(user.items)
-      console.log(req.body.items)
+      //console.log(user.post)
+      //console.log("topic" + req.body.topic +" post "+req.body.post)
       if(err) throw err;
-      Todo.create(
-        {user: user._id,
-          items: req.body.items}, 
+      Content.create(
+        {
+          topic: req.body.topic,
+          post: req.body.post
+          //comment: req.body.comment
+        }, 
         (err , ok)=>{
         if(err) throw err;
           
@@ -134,8 +128,13 @@ router.post('/todos', validateToken,body("items"),body("email"),(req, res, next)
         return res.send("ok")
       })
     }
-  })
+            
+
+    })
+  }) 
+    
+
   
-});
+
 
 module.exports = router;
