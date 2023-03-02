@@ -100,7 +100,7 @@ router.post("/user/register",body("email").isEmail(),body("password")
   });
 });
 
-//DOES NOT WORK YET!
+//Post content
 router.post('/content', validateToken,(req, res, next) => {
   const filter = {topic: req.body.topic}
   const update = {comment: req.body.comment}
