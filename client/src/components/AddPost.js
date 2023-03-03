@@ -11,7 +11,8 @@ function AddPost() {
       fetch("api/content", {
         method: "POST",
         headers: {
-          "Content-type": "application/json"
+          "Content-type": "application/json",
+          "authorization": "Bearer " + localStorage.getItem('auth_token')
         },
         body: JSON.stringify(content),
         mode: "cors"
@@ -19,7 +20,7 @@ function AddPost() {
   
     }
 
-   const handelChange = (event) =>{
+  const handelChange = (event) =>{
     setContentData({...content, [event.target.name]: event.target.value}) 
    }
   return (

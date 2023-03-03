@@ -1,6 +1,6 @@
 import React from 'react'
 import AddPost from './AddPost'
-
+import FetchPosts from './FetchPosts'
 
 function Home() {
   return (
@@ -8,6 +8,7 @@ function Home() {
         <h1>Homepage</h1>
         <p>Add stackOverFlow look here</p>
         <AddPost></AddPost>
+        <FetchPosts></FetchPosts>
     </div>
   )
 }

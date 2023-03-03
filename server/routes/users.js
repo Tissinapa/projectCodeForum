@@ -8,8 +8,27 @@ const jwt = require("jsonwebtoken")
 const User = require("../models/Users")
 const Content = require("../models/Contents")
 const passport  = require("passport-jwt")
-const validateToken = require("../auth/validation.js")
+//const validateToken = require("../auth/validation.js")
     
+
+const validateToken = function(req,res,next){
+  const authHeader = req.headers["authorization"]
+  let token
+  if(authHeader){
+      token = authHeader.split(" ")[1]
+  }else {
+      token = null
+  }
+  if(token == null) return res.sendStatus(401)
+  jwt.verify(token , process.env.SECRET, (err,email)=>{
+      if(err)return res.sendStatus(401)
+      req.email = email
+      //console.log(req.email)
+      next()
+  })
+
+}
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -19,6 +38,7 @@ router.get('/private', validateToken, (req, res, next) => {
   res.send(req.email.email)
   
 });
+
 
 //Login
 router.post('/user/login', body("email").trim(),body("password").trim(),
@@ -132,7 +152,8 @@ router.post('/content', validateToken,(req, res, next) => {
 
     })
   }) 
-    
+  
+
 
   
 

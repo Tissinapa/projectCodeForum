@@ -25,6 +25,7 @@ function Login() {
           //setJwt(data.token)
           storeToken(data.token)
           validation()
+          window.location.href="/"
           //setUser(JSON.parse(Buffer.from(data.token.split(".")[1], "base64").toString()))
         }
       })
