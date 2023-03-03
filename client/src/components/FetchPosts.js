@@ -8,7 +8,7 @@ function FetchPosts() {
     useEffect(()=> {
       let mounted = true
       async function fetchData(){
-        const response = await fetch("")
+        const response = await fetch("api/getContent")
         const getData = await response.json()
       
         if(mounted){
@@ -28,8 +28,10 @@ function FetchPosts() {
       <div>
         <h1>About to fetch something</h1>
         {data.map((items)=>(
-          <ul key={items.id}>
-            {items.title}
+          <ul key={items.Topic}>
+            {items.Topic}
+            {items.post} <br></br>
+            {items.comment}
           </ul>
         ))}
       </div>

@@ -7,8 +7,9 @@ function Home() {
     <div>
         <h1>Homepage</h1>
         <p>Add stackOverFlow look here</p>
-        <AddPost></AddPost>
         <FetchPosts></FetchPosts>
+        <AddPost></AddPost>
+        
     </div>
   )
 }

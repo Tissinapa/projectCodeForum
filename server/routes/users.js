@@ -122,6 +122,7 @@ router.post("/user/register",body("email").isEmail(),body("password")
 
 //Post content
 router.post('/content', validateToken,(req, res, next) => {
+
   const filter = {topic: req.body.topic}
   const update = {comment: req.body.comment}
 
@@ -153,7 +154,16 @@ router.post('/content', validateToken,(req, res, next) => {
     })
   }) 
   
-
+router.get("/getContent", (req,res,next)=>{
+  Content.find((err,data)=>{
+    if(err){
+      console.log(err)
+    }else{
+      res.json(data)
+    }
+  })
+ 
+})
 
   
 

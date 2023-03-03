@@ -1,5 +1,8 @@
 import React from 'react'
 import {useState} from "react"
+import Input from '@mui/joy/Input';
+import Typography from '@mui/joy/Typography';
+//import Button from '@mui/joy/Button';
 
 function Register() {
     const [users, setUsersData] = useState({})
@@ -22,11 +25,13 @@ function Register() {
    }
   return (
     <div>
-        <h1>Here you can register</h1>
+        <Typography level="h1" sx={{ textAlign: 'center' ,fontWeight: 'bold'}}>Here you can register</Typography>
         <form onSubmit={submit} onChange={handelChange}>
-            <input type="email" name="email"/>Email 
-            <input type="password" name="password"/>Password
-            <input type="submit" value="Submit"/>
+            
+            <Input type="email" name="email" variant="outlined" color="primary" placeholder="Email" size="md" sx={{m: 2}}/>
+            <Input type="password" name="password" variant="outlined" color="primary" placeholder="Password" size="md"sx={{m: 2}}/> 
+            
+            <Input type="submit" variant="outlined" color="success" value="Submit" sx={{m: 2}}/>
         </form>
     </div>
   )
