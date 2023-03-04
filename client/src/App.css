@@ -12,10 +12,8 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-Input{
-  width: 50%;
-  margin: 5%;
-}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

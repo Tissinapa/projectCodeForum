@@ -27,10 +27,8 @@ function Register() {
     <div>
         <Typography level="h1" sx={{ textAlign: 'center' ,fontWeight: 'bold'}}>Here you can register</Typography>
         <form onSubmit={submit} onChange={handelChange}>
-            
             <Input type="email" name="email" variant="outlined" color="primary" placeholder="Email" size="md" sx={{m: 2}}/>
             <Input type="password" name="password" variant="outlined" color="primary" placeholder="Password" size="md"sx={{m: 2}}/> 
-            
             <Input type="submit" variant="outlined" color="success" value="Submit" sx={{m: 2}}/>
         </form>
     </div>

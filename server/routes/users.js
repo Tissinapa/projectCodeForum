@@ -165,6 +165,17 @@ router.get("/getContent", (req,res,next)=>{
  
 })
 
+router.get("/getContent/:id", (req,res,next)=>{
+  Content.findOne({_id: req.params.id}, (err,data)=>{
+    if(err){
+      console.log(err)
+    }else{
+      res.json(data.comment)
+    }
+  })
+ 
+})
+
   
 
 

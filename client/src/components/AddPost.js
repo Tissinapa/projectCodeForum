@@ -1,5 +1,7 @@
 import React from 'react'
 import {useState} from "react"
+import Textarea from '@mui/joy/Textarea';
+
 
 function AddPost() {
     const [content, setContentData] = useState({})
@@ -27,9 +29,9 @@ function AddPost() {
     <div>
         <h1>Here you can Post stuff</h1>
         <form onSubmit={submit} onChange={handelChange}>
-            <textarea name="topic" rows="10" cols="30"></textarea>
-            <textarea name="post" rows="10" cols="30"></textarea>
-            <textarea name="comment" rows="10" cols="30"></textarea>
+            <Textarea name="topic" rows="10" cols="30" placeholder="Topic"></Textarea>
+            <textarea name="post" rows="10" cols="30" placeholder="Post"></textarea>
+            <textarea name="comment" rows="10" cols="30" placeholder="Comment"></textarea>
             <input type="submit" value="Submit"/>
         </form>
     </div>
