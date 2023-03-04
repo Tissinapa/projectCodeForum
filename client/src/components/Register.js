@@ -2,12 +2,13 @@ import React from 'react'
 import {useState} from "react"
 import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
-//import Button from '@mui/joy/Button';
+
 
 function Register() {
     const [users, setUsersData] = useState({})
   
-
+    //Posts user input to serverside and then creates new user to db
+    //if there is no errors
     const submit = (event)=>{
       event.preventDefault()
       fetch("api/user/register", {

@@ -1,6 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
+//Unfortunetly couldn't figure out how to show comments according to content id
+//this works on serverside with postman
+//When user click comment button in FetchPost.js this should send the content id here 
+//after that it gets the comments from the db if there is any
 function FetchComments({id}) {
     const [dataComments, setCommentsData] = useState()
     let url = "api/getContent/:"+{id}

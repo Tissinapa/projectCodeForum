@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import {Link} from "react-router-dom";
 import Logout from './Logout';
 
+
+//App bar where user can navigate 
 function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>

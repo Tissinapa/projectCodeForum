@@ -4,7 +4,28 @@ import Textarea from '@mui/joy/Textarea';
 import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 
+//Adds the users ask quiestion to db
 
+//This does work but it kind of akward to use
+
+//To add comments to specifis post you need to put wanted topic in topic field
+
+/*Example 
+
+Topic =  Test topic
+Post = Something
+comment= *leave empty*
+*Click sumbit
+*Refresh page
+
+To comment on that post
+
+Insert "Test topic" to topic textarea and then add comment 
+
+*/
+
+//Also it is not code snippet because i have no idea how to save that on database
+//But you can add long sentences but cannot add line break
 function AddPost() {
     const [content, setContentData] = useState({})
     

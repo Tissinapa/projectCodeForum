@@ -8,11 +8,11 @@ import  {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 
 function App() {
 
-
+//Page navigation
   return (
     <Router>
       <div className="App">
-      
+        
         <Routes>
           <Route path="/" element={<><Header/><Home/>  </>}></Route>
           <Route path='/login' element={<><Header/><Login /> </>} />

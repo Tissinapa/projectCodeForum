@@ -1,15 +1,13 @@
 import React from 'react'
 import Button from '@mui/joy/Button';
-import Typography from '@mui/joy/Typography';
+
 
 function Logout() {
-    //const auth_token = localStorage.getItem("auth_token")
     
+    //Removes auth token from local storage
     function logoutFunction(){
         localStorage.removeItem("auth_token")
         window.location.href = "/"
-
-
     }
   return (
    

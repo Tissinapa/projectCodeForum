@@ -3,6 +3,8 @@ import AddPost from './AddPost'
 import FetchPosts from './FetchPosts'
 
 
+//Just a home page where calls 
+//fetchposts and addpost components
 
 function Home() {
   return (

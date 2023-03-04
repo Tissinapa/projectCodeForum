@@ -8,7 +8,7 @@ function Login() {
     const auth_token = localStorage.getItem("auth_token")
     
   
-
+    //Post login input to server side
     const submit = (event)=>{
       event.preventDefault()
       fetch("api/user/login", {
@@ -23,11 +23,12 @@ function Login() {
       .then(data =>{
         console.log(data)
         if(data.token){
-          //setJwt(data.token)
+          //If login is succesfull stores the token part to local storage
+          //also validates the user at sametime
           storeToken(data.token)
           validation()
           window.location.href="/"
-          //setUser(JSON.parse(Buffer.from(data.token.split(".")[1], "base64").toString()))
+          
         }
       })
   
@@ -43,7 +44,6 @@ function Login() {
         headers: {
           "authorization": "Bearer " + auth_token
         },
-
       })
       .then(response => response.text())
       .then(data =>{
