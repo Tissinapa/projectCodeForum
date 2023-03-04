@@ -29,7 +29,7 @@ Insert "Test topic" to topic textarea and then add comment
 function AddPost() {
     const [content, setContentData] = useState({})
     
-
+    //Saves post to db and also checks if user is authenticated
     const submit = (event)=>{
         
       event.preventDefault()
