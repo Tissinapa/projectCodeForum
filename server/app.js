@@ -1,3 +1,4 @@
+// This is mainly created with express template with no view option
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -29,7 +30,7 @@ app.use('/', indexRouter);
 app.use('/api', usersRouter);
 
 
-
+//Server and client compined together
 if (process.env.NODE_ENV ==="development"){
     var corsOtions = {
         origin: "http://localhost:3000",

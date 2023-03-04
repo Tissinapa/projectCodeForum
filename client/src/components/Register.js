@@ -17,6 +17,9 @@ function Register() {
         },
         body: JSON.stringify(users),
         mode: "cors"
+      }).then(response => response.text())
+      .then(data =>{
+        console.log(data)
       })
   
     }
@@ -25,7 +28,7 @@ function Register() {
    }
   return (
     <div>
-        <Typography level="h1" sx={{ textAlign: 'center' ,fontWeight: 'bold'}}>Here you can register</Typography>
+        <Typography level="h1" sx={{ textAlign: 'center' ,fontWeight: 'bold',fontSize: 30 ,marginTop: 10}}>Register</Typography>
         <form onSubmit={submit} onChange={handelChange}>
             <Input type="email" name="email" variant="outlined" color="primary" placeholder="Email" size="md" sx={{m: 2}}/>
             <Input type="password" name="password" variant="outlined" color="primary" placeholder="Password" size="md"sx={{m: 2}}/> 

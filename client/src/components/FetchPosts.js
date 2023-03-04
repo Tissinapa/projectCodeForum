@@ -2,8 +2,6 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 //import FetchComments from './FetchComments';
@@ -42,7 +40,7 @@ function FetchPosts() {
 
     return (
   
-      <div><Typography variant='h1' sx={{fontSize: 45 ,textAlign: 'center'}} >Questions</Typography>
+      <div><Typography variant='h1' sx={{fontSize: 45 ,textAlign: 'center',marginTop: 10}} >Questions</Typography>
         {data.map((items)=>(
           <Card key={items._id} value={items._id} sx={{m: 2}}>
             <Typography variant='h1' sx={{fontSize: 25}}>{items.topic} 

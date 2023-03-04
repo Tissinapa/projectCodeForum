@@ -1,16 +1,15 @@
 var express = require('express');
 var router = express.Router();
 const bcrypt = require("bcrypt")
-const bodyParser = require("body-parser")
-const mongoose = require("mongoose")
 const {body, validationResult} = require("express-validator")
 const jwt = require("jsonwebtoken")
 const User = require("../models/Users")
 const Content = require("../models/Contents")
-const passport  = require("passport-jwt")
-//const validateToken = require("../auth/validation.js")
-    
 
+
+    
+// Creates token for checking if user is logged in or not 
+// Splits token and takes password part and verifyis it
 const validateToken = function(req,res,next){
   const authHeader = req.headers["authorization"]
   let token
@@ -23,7 +22,6 @@ const validateToken = function(req,res,next){
   jwt.verify(token , process.env.SECRET, (err,email)=>{
       if(err)return res.sendStatus(401)
       req.email = email
-      //console.log(req.email)
       next()
   })
 
@@ -33,6 +31,9 @@ const validateToken = function(req,res,next){
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
+
+
+//gets token
 router.get('/private', validateToken, (req, res, next) => {
   
   res.send(req.email.email)
@@ -40,7 +41,7 @@ router.get('/private', validateToken, (req, res, next) => {
 });
 
 
-//Login
+//Finds a user in the db and if found jwt token is created
 router.post('/user/login', body("email").trim(),body("password").trim(),
 (req, res, next) => {
   User.findOne({email: req.body.email},(err, user)=>{
@@ -82,14 +83,14 @@ router.post('/user/login', body("email").trim(),body("password").trim(),
 
 });
 
-//Register /user/register
+//Register new user and save to db
 router.post("/user/register",body("email").isEmail(),body("password")
   .isStrongPassword()
   .withMessage("Password is not strong enough"),
 (req, res, next) =>{
   const errors = validationResult(req)
   if(!errors.isEmpty()){
-    //console.log(errors.errors[0].msg)
+    
     return res.send(errors.errors[0].msg)
   }
 
@@ -98,7 +99,7 @@ router.post("/user/register",body("email").isEmail(),body("password")
       throw err;
     };  
     if(user){
-      //res.status(403).send("Email already in use");
+      
       return res.send("Email already in use");
     }else {
       bcrypt.genSalt(10,(err, salt)=>{
@@ -111,7 +112,7 @@ router.post("/user/register",body("email").isEmail(),body("password")
             },(err,ok)=>{
               if(err) throw err;
               return res.send("ok")
-              //return res.redirect("login.html")
+              
             }
           );
         });
@@ -120,7 +121,8 @@ router.post("/user/register",body("email").isEmail(),body("password")
   });
 });
 
-//Post content
+//Post new content and if topic exists then you can comment on that post
+// Also check if user is logged in or not 
 router.post('/content', validateToken,(req, res, next) => {
 
   const filter = {topic: req.body.topic}
@@ -133,19 +135,17 @@ router.post('/content', validateToken,(req, res, next) => {
       
       res.send("ok")
     }else {
-      //console.log(user.post)
-      //console.log("topic" + req.body.topic +" post "+req.body.post)
+
       if(err) throw err;
       Content.create(
         {
           topic: req.body.topic,
           post: req.body.post
-          //comment: req.body.comment
+          
         }, 
         (err , ok)=>{
         if(err) throw err;
-          
-          //console.log(ok._id)
+        
         return res.send("ok")
       })
     }
@@ -153,7 +153,8 @@ router.post('/content', validateToken,(req, res, next) => {
 
     })
   }) 
-  
+
+//Gets all the posts from database
 router.get("/getContent", (req,res,next)=>{
   Content.find((err,data)=>{
     if(err){
@@ -165,6 +166,8 @@ router.get("/getContent", (req,res,next)=>{
  
 })
 
+// Get comment based on id in database
+// unfortunetly this works only with postman
 router.get("/getContent/:id", (req,res,next)=>{
   Content.findOne({_id: req.params.id}, (err,data)=>{
     if(err){

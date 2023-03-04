@@ -56,7 +56,7 @@ function Login() {
    }
   return (
     <div>
-        <Typography level="h1" sx={{ textAlign: 'center' ,fontWeight: 'bold'}}>Here you can Login</Typography>
+        <Typography level="h1" sx={{ textAlign: 'center' ,fontWeight: 'bold',fontSize: 40 ,marginTop: 10}}>Login</Typography>
         <form onSubmit={submit} onChange={handelChange}>
             <Input type="email" name="email" variant="outlined" color="primary" placeholder="Email" size="md" sx={{m: 2}}/>
             <Input type="password" name="password" variant="outlined" color="primary" placeholder="Password" size="md"sx={{m: 2}}/> 
